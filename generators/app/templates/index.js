@@ -1,1 +1,0 @@
-import './src/js/main_prod';

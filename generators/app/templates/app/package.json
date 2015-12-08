@@ -12,9 +12,13 @@
   },
   "author": "<%= author %>",
   "license": "ISC",
+  "browserify": {
+    "entries": "./src/js/main.js",
+    "debug": true
+  },
   "dependencies": {
     "babel-polyfill": "^6.3.14",
-    "frntnd-framework": "^0.0.1-alpha3",
+    "frntnd-framework": "^0.0.4",
     "jquery": "2.1.4",
     "lodash": "^3.10.1",
     "riot": "^2.3.11",
