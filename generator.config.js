@@ -5,9 +5,6 @@ var path = require('path');
 
 var currentDirName = /(?:\/)([^\/]+)$/g.exec(process.cwd())[1];
 
-var appGeneratorConfig = require('./config/app');
-var modelGeneratorConfig = require('./config/model');
-
 module.exports = {
   // global settings
 
@@ -28,7 +25,7 @@ module.exports = {
     'build.config.js',
     'karma.conf.js',
     'index.js',
-    'gulpfile.js',
+    'gulpfile.',
     '.gitignore'
   ],
 
@@ -74,9 +71,5 @@ module.exports = {
         return !!input;
       }
     }
-  },
-
-  // generators
-  app: appGeneratorConfig,
-  model: modelGeneratorConfig
+  }
 };

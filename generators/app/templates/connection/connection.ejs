@@ -1,0 +1,11 @@
+// @todo refactor to connections config
+const <%= connection.name.replace(/[^\w|\d|_]/ig, '_') %> = {
+
+  name: '<%= connection.name %>',
+  adapter: '<%= connection.adapter %>'<% if (connection.url) { %>,
+  url: '<%= connection.url %>'
+  <% } %>
+
+};
+
+export default <%= connection.name.replace(/[^\w|\d|_]/ig, '_') %>;

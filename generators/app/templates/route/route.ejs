@@ -1,0 +1,12 @@
+// @todo refactor to the routes config so all routes are defined in one place
+const <%= route.name %> = {
+  route: '<%= route.route %>',
+  view: '<% if (view && view.name) { %><%= view.name %><% } else { %><%= route.view %><% } %>',
+  <% if (controller && controller.name) {%>controller: '<%= controller.name %>', <% } else if (route.controller && route.controller !== 'No Controller') {%>controller: '<%= route.controller %>',<%}%>
+  policies: [<% for (var i = 0; i < route.policies.length; i++) { %>
+    '<%= route.policies[i]%>',<%}%>
+  ],
+  unauthorized: '<%= route.unauthorized %>'
+};
+
+export default <%= route.name %>;

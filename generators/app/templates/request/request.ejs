@@ -1,0 +1,8 @@
+const <%= name.replace('.', '_') %> = {
+  name: '<%= name %>'
+  route: '<%= route %>',
+  method: '<%= method %>',
+  <% if (connection) {%>connection: '<%= connection %>'<% } %>
+};
+
+export default <%= name.replace('.', '_') %>;

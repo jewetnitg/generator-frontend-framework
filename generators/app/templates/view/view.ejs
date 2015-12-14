@@ -1,0 +1,7 @@
+import template from '../../../tags/<% if(tag && tag.name) { %><%= tag.name %><% } else { %><%= view.tag %><% } %>.tag';
+
+const <%= view.name %> = {
+  template
+};
+
+export default <%= view.name %>;
