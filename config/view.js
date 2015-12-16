@@ -35,16 +35,6 @@ module.exports = {
         return !!input;
       }
     },
-    // @todo refactor to be called template
-    // @todo implement for multiple adapters
-    'view.tag': {
-      type: 'list',
-      choices: tags,
-      message: 'What tag should this view use?',
-      validate: function (input) {
-        return !!input;
-      }
-    },
     'view.holder': {
       type: 'input',
       message: 'Please enter the selector this view should be appended to',
@@ -58,22 +48,55 @@ module.exports = {
       choices: viewAdapters,
       message: 'Please choose an Adapter to use'
     },
-    'tag.name': {
+    'view.riot': {
+      type: 'list',
+      choices: tags,
+      message: 'What tag should this view use?',
+      when: function (opts) {
+        return opts['view.adapter'] === 'riot';
+      },
+      validate: function (input) {
+        return !!input;
+      }
+    },
+    'riot.name': {
       type: 'input',
       message: 'Please enter a name for the tag, user-login for example',
       when: function (opts) {
-        return opts['view.tag'] === CREATE_NEW_TAG;
+        return opts['view.adapter'] === 'riot' && opts['view.riot'] === CREATE_NEW_TAG;
       },
       validate: function (input) {
-        return !!input && !tags[input];
+        if (tags[input]) {
+          return "Riot tag with name '" + input + "' already exists.";
+        }
+
+        if (!input) {
+          return "No name provided.";
+        }
+
+        return true;
       }
     }
   },
 
+  transform: function (props) {
+    var extensions = {
+      'riot': 'tag'
+    };
+    props.view.template = {
+      extension: extensions[props.view.adapter],
+      name: props[props.view.adapter].name
+    };
+    var pathSuffix = props.view.adapter + '/' + props.view.template.name + '.' + props.view.template.extension;
+    props.view.template.path = '../../../templates/' + pathSuffix;
+    props.dstPath = 'src/templates/' + pathSuffix;
+    return props;
+  },
+
   templates: [
     ['view.ejs', 'src/js/api/views/<%= view.name %>.js'],
-    ['../tag/tag.ejs', 'src/tags/<%= tag.name %>.tag', function () {
-      return props.tag.name;
+    ['../<%= view.adapter %>/<%= view.adapter %>.ejs', '<%= dstPath %>', function () {
+      return props.view.adapter === 'riot' && props.riot && props.riot.name;
     }]
   ]
 

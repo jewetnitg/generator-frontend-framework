@@ -10,16 +10,8 @@ var defaults = require('../lib/defaults');
 
 var viewConfig = require('../lib/files/viewConfig');
 var views = require('../lib/files/views');
-var controllers = require('../lib/files/controllers');
-var policies = require('../lib/files/policies');
-
-var NO_CONTROLLER = 'No Controller';
-var NEW_CONTROLLER = 'Create a new Controller';
-var NEW_VIEW = 'Create a new View';
-
-views.unshift(NEW_VIEW);
-controllers.unshift(NO_CONTROLLER);
-controllers.unshift(NEW_CONTROLLER);
+var dataMiddleware = require('../lib/files/dataMiddleware');
+var policies = require('../lib/files/securityMiddleware');
 
 defaults.view = false;
 defaults.controller = false;
@@ -51,20 +43,20 @@ module.exports = {
         return !!input;
       }
     },
-    'route.controller': {
-      type: 'list',
-      message: 'Please choose a Controller for this route',
-      choices: controllers
-    },
     'route.view': {
       type: 'list',
       message: 'Please choose a View for the route',
       choices: views
     },
-    'route.policies': {
+    'route.middleware.security': {
       type: 'checkbox',
-      message: 'What policies should be applied to this route?',
+      message: 'What security middleware should be applied to this route?',
       choices: policies
+    },
+    'route.middleware.data': {
+      type: 'checkbox',
+      message: 'What data middleware should be applied to this route?',
+      choices: dataMiddleware
     },
     'route.unauthorized': {
       type: 'input',

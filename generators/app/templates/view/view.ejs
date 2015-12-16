@@ -1,4 +1,4 @@
-import template from '../../../tags/<% if(tag && tag.name) { %><%= tag.name %><% } else { %><%= view.tag %><% } %>.tag';
+import template from '<%= view.template.path %>';
 
 const <%= view.name %> = {
   template

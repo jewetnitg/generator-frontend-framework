@@ -26,7 +26,7 @@ module.exports = {
   },
 
   templates: [
-    ['tag.ejs', 'src/tags/<%= name %>.tag']
+    ['riot.ejs', 'src/templates/riot/<%= name %>.tag']
   ]
 
 };

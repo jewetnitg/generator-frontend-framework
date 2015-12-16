@@ -25,7 +25,7 @@ module.exports = {
     'build.config.js',
     'karma.conf.js',
     'index.js',
-    'gulpfile.',
+    'gulpfile.js',
     '.gitignore'
   ],
 

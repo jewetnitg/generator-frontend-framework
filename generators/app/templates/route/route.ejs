@@ -2,10 +2,14 @@
 const <%= route.name %> = {
   route: '<%= route.route %>',
   view: '<% if (view && view.name) { %><%= view.name %><% } else { %><%= route.view %><% } %>',
-  <% if (controller && controller.name) {%>controller: '<%= controller.name %>', <% } else if (route.controller && route.controller !== 'No Controller') {%>controller: '<%= route.controller %>',<%}%>
-  policies: [<% for (var i = 0; i < route.policies.length; i++) { %>
-    '<%= route.policies[i]%>',<%}%>
-  ],
+  middleware: {
+    security: [<% for (var i = 0; i < route.middleware.security.length; i++) { %>
+      '<%= route.middleware.security[i]%>'<% if (i < route.middleware.security.length - 1) { %>,<% } %><%}%>
+    ],
+    data: [<% for (var i = 0; i < route.middleware.data.length; i++) { %>
+      '<%= route.middleware.data[i]%>'<% if (i < route.middleware.data.length - 1) { %>,<% } %><%}%>
+    ]
+  },
   unauthorized: '<%= route.unauthorized %>'
 };
 
