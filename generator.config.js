@@ -5,6 +5,7 @@ var path = require('path');
 
 var currentDirName = /(?:\/)([^\/]+)$/g.exec(process.cwd())[1];
 
+// @todo use packageJSON as a 'JSON/Object' template, replace name and description properties, stringify with formatting and save
 module.exports = {
   // global settings
 

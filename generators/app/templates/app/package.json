@@ -14,6 +14,12 @@
   "license": "ISC",
   "browserify": {
     "entries": "./src/js/main.js",
+    "transform": [
+      "reactify",
+      {
+        "es6": true
+      }
+    ],
     "debug": true
   },
   "dependencies": {
@@ -22,6 +28,8 @@
     "babel-preset-es2015": "^6.3.13",
     "jquery": "2.1.4",
     "lodash": "^3.10.1",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
     "riot": "^2.3.11",
     "serve-static": "^1.10.0"
   },
@@ -78,6 +86,7 @@
     "phantomjs-polyfill": "0.0.1",
     "proxyquire": "^1.6.0",
     "proxyquireify": "^2.1.0",
+    "reactify": "^1.1.1",
     "require-globify": "^1.3.0",
     "rimraf": "^2.4.1",
     "riotify": "^0.1.2",
